@@ -82,7 +82,16 @@ def valid_date(date: str) -> bool:
     '''check validity of date and return True if valid'''
     try:
         # Split the date into year, month, and day 
-        str_year, str_month, str_day = date.split('-') 
+        str_year, str_month, str_day = date.split('-')
+
+        # This helps us check if the date has the correct format: "YYYY-MM-DD"
+        if len(date) != 10 or date[4] != '-' or date[7] != '-':
+            return False
+        
+        # This helps us ensure that all parts are digits
+        if not (str_year.isdigit() and str_month.isdigit() and str_day.isdigit()):
+            return False
+
         year = int(str_year)
         month = int(str_month)
         day = int(str_day)
@@ -97,7 +106,7 @@ def valid_date(date: str) -> bool:
 
         # If no issues, return True as date is valid
         return True
-    except ValueError:
+    except (ValueError, IndexError):
         # Return False if there is any error 
         return False
 
