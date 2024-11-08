@@ -92,9 +92,9 @@ def valid_date(date: str) -> bool:
         if not (str_year.isdigit() and str_month.isdigit() and str_day.isdigit()):
             return False
 
-        year = int(str_year)
-        month = int(str_month)
-        day = int(str_day)
+        year = int(str_year) #converts the strings into integer values
+        month = int(str_month) #converts the strings into integer values
+        day = int(str_day) #converts the strings into integer values
 
         # Check if the month is between 1 and 12
         if month < 1 or month > 12:
