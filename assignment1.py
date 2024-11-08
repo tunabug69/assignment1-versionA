@@ -103,6 +103,29 @@ def valid_date(date: str) -> bool:
 
 def day_count(start_date: str, stop_date: str) -> int:
     "Loops through range of dates, and returns number of weekend days"
-    
+    weekend_count = 0
+    current_date = start_date
+
+    # This lets us Ensure that the start date is earlier or equal to the stop date
+    if start_date > stop_date: # if start date is greater than stop date
+        start_date, stop_date = stop_date, start_date #this swaps the values of start date and stop date, basically if the user inputs the dates in the wrong order, this helps to ensure that the start date is always earlier than the stop date
+
+    # Loop through all dates from start_date to stop_date (inclusive)
+    while current_date <= stop_date: 
+        # Split the current date into year, month, and day
+        year, month, day = map(int, current_date.split('-'))
+        
+        # Get the day of the week (e.g., 'sat', 'sun', etc.)
+        day_name = day_of_week(year, month, day)
+
+        # Increment count if it's a Saturday or Sunday
+        if day_name in ['sat', 'sun']: #This is where saturdays and sundays are calculated, so if the day name comes to saturday or sunday weekend count is added by 1
+            weekend_count += 1
+
+        # Move to the next day using the after function
+        current_date = after(current_date)
+
+    return weekend_count
+
 if __name__ == "__main__":
     ...
