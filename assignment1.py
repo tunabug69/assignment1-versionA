@@ -70,7 +70,7 @@ def after(date: str) -> str:
 
 
 def usage():
-    '''Print a usage message to the user'''
+    '''This prints a usage message to the user'''
     print("Usage: assignment1.py YYYY-MM-DD YYYY-MM-DD")
     print("Ensure that both dates are in YYYY-MM-DD format.")
 
@@ -119,7 +119,7 @@ def day_count(start_date: str, stop_date: str) -> int:
     # This lets us Ensure that the start date is earlier or equal to the stop date
     if start_date > stop_date: # if start date is greater than stop date
         start_date, stop_date = stop_date, start_date #this swaps the values of start date and stop date, basically if the user inputs the dates in the wrong order, this helps to ensure that the start date is always earlier than the stop date
-
+    
     # Loop through all dates from start_date to stop_date (inclusive)
     while current_date <= stop_date: 
         # Split the current date into year, month, and day
@@ -151,6 +151,10 @@ if __name__ == "__main__":
     if not valid_date(start_date) or not valid_date(stop_date):
         usage()
         sys.exit(1)
+
+    # This helps us Swap the dates if necessary to ensure the start date is earlier
+    if start_date > stop_date:
+        start_date, stop_date = stop_date, start_date
 
     # This helps us Calculate the number of weekend days
     weekend_days = day_count(start_date, stop_date) 
