@@ -138,4 +138,22 @@ def day_count(start_date: str, stop_date: str) -> int:
     return weekend_count
 
 if __name__ == "__main__":
-    ...
+    # Check if the correct number of arguments is provided
+    if len(sys.argv) != 3:
+        usage() # if the required number of arguments(3 arguments (The script name, start date, and stop date)) is not printed this prints the usage function instruction the user to use the correct format
+        sys.exit(1) # This exits the program with status code 1 indicating an error as the required arguments has not been provided.
+
+    # This enables us to get the start and stop dates from command-line arguments
+    start_date = sys.argv[1] 
+    stop_date = sys.argv[2]
+
+    # This helps us Validate both dates using the valid date function
+    if not valid_date(start_date) or not valid_date(stop_date):
+        usage()
+        sys.exit(1)
+
+    # This helps us Calculate the number of weekend days
+    weekend_days = day_count(start_date, stop_date) 
+
+    # This prints the final output of the program
+    print(f"The period between {start_date} and {stop_date} includes {weekend_days} weekend days.")
