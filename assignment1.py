@@ -71,7 +71,8 @@ def after(date: str) -> str:
 
 def usage():
     '''Print a usage message to the user'''
-    
+    print("Usage: assignment1.py YYYY-MM-DD YYYY-MM-DD")
+    print("Ensure that both dates are in YYYY-MM-DD format.")
 
 
 def leap_year(year: int) -> bool:
