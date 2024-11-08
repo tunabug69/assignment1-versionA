@@ -79,12 +79,30 @@ def leap_year(year: int) -> bool:
     return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0) # This code defines what a leap year is 
 
 def valid_date(date: str) -> bool:
-    "check validity of date and return True if valid"
-    ...
+    '''check validity of date and return True if valid'''
+    try:
+        # Split the date into year, month, and day 
+        str_year, str_month, str_day = date.split('-') 
+        year = int(str_year)
+        month = int(str_month)
+        day = int(str_day)
+
+        # Check if the month is between 1 and 12
+        if month < 1 or month > 12:
+            return False
+
+        # Check if the day is valid for the given month using mon_max
+        if day < 1 or day > mon_max(month, year):
+            return False
+
+        # If no issues, return True as date is valid
+        return True
+    except ValueError:
+        # Return False if there is any error 
+        return False
 
 def day_count(start_date: str, stop_date: str) -> int:
     "Loops through range of dates, and returns number of weekend days"
-    ...
-
+    
 if __name__ == "__main__":
     ...
